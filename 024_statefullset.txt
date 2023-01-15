@@ -1,0 +1,61 @@
+ReplicationController
+ReplicaSet
+DaemonSet
+Deployment
+
+StatefulSet : It is used to deploy stateful apps on k8s cluster
+
+	ex: mysql db, mongo db etc...
+
+-> StatefulSet will give unique identify for every pod starting from zero.
+
+mysql-db ---> 3 replicas
+
+mysql-0  (master pod)
+mysql-1  (slave pod - 1)
+mysql-2  (slave pod - 2)
+
+-> When we scale down the SatefulSet, it will delete pods from last (in reverse order)
+
+Note: Slave POD will be created with data available in the master pod.
+
+
+Q) When to use Deployment and when to use StatefulSet ?
+
+-> To deploy stateless applications we will use Deployment concept. Pods will be created/deleted in random fashion.
+
+-> To deploy stateful applications we will use StatefulSet concept. Pods will be created with unique-identity. Primary and Secondary pods will be created in a order. When we scale down it will delete pods in reverse order. Primary POD will have read & write operations where as secondary pods will perform only read operation.
+
+
+Q) How to deploy Monolith Application ?
+
+Step-1 : We will deploy database as Cluter IP (headless service)
+
+Step-2 : We will deploy application as Node Port service
+
+Q) How to deploy microservices based application ?
+
+Step-1 : We will deploy backend apis related databases as headless service
+
+Step-2 : We will deploy backend apis 
+
+Step-3 : We will configure backend apis urls in frontend application
+
+Step-4: We will re-build docker image for Frontend application
+
+Step-5 : We will deploy frontend application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
